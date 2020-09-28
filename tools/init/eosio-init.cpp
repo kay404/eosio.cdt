@@ -101,7 +101,7 @@ struct project {
 
    const std::string readme_bare = " --- @ Project ---\n\n"
                                    " - How to Build -\n"
-                                   "   - run the command 'eosio-cpp -abigen -o @.wasm @.cpp'\n";
+                                   "   - run the command 'icbs-cpp -abigen -o @.wasm @.cpp'\n";
 
    std::string replace_name( const std::string& in ) {
       std::stringstream ss;
@@ -185,9 +185,9 @@ struct project {
 int main(int argc, const char **argv) {
 
    cl::SetVersionPrinter([](llvm::raw_ostream& os) {
-        os << "eosio-init version " << "@VERSION_FULL@" << "\n";
+        os << "icbs-init version " << "@VERSION_FULL@" << "\n";
   });
-   cl::OptionCategory cat("eosio-init", "generates an eosio smart contract project");
+   cl::OptionCategory cat("icbs-init", "generates an icbs smart contract project");
    
    cl::opt<bool> bare_opt(
       "bare",
@@ -203,7 +203,7 @@ int main(int argc, const char **argv) {
       cl::desc("directory to place the project"),
       cl::cat(cat));
 
-   cl::ParseCommandLineOptions(argc, argv, std::string("eosio-proj"));
+   cl::ParseCommandLineOptions(argc, argv, std::string("icbs-proj"));
    try {
       if (!std::regex_match(project_name, std::regex("^[_a-zA-Z][_a-zA-Z0-9]*$"))) {
          throw std::runtime_error("ERROR: invalid identifier: " + project_name + " (ensure that it is a valid C++ identifier)");
