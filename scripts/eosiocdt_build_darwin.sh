@@ -33,13 +33,15 @@ printf "Disk space available: ${DISK_AVAIL}G\\n"
 if [ "${MEM_GIG}" -lt 7 ]; then
 	echo "Your system must have 7 or more Gigabytes of physical memory installed."
 	echo "Exiting now."
-	exit 1
+	exit 1 
 fi
 
-if [ "${OS_MIN}" -lt 12 ]; then
-	echo "You must be running Mac OS 10.12.x or higher to install EOSIO."
-	echo "Exiting now."
-	exit 1
+if [ "${OS_MAJ}" -lt 11 ]; then
+	if [ "${OS_MIN}" -lt 12 ]; then
+		echo "You must be running Mac OS 10.12.x or higher to install EOSIO."
+		echo "Exiting now."
+		exit 1
+	fi
 fi
 
 if [ "${DISK_AVAIL}" -lt "$DISK_MIN" ]; then

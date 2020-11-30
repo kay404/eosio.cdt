@@ -230,11 +230,11 @@ namespace eosio { namespace cdt {
             std::string nm = decl->getNameAsString()+"_"+decl->getParent()->getNameAsString();
             if (cg.is_eosio_contract(decl, cg.contract_name)) {
                if (has_eosiolib) {
-                  ss << "\n\n#include <eosiolib/datastream.hpp>\n";
-                  ss << "#include <eosiolib/name.hpp>\n";
+                  ss << "\n\n#include <icbslib/datastream.hpp>\n";
+                  ss << "#include <icbslib/name.hpp>\n";
                } else {
-                  ss << "\n\n#include <eosio/datastream.hpp>\n";
-                  ss << "#include <eosio/name.hpp>\n";
+                  ss << "\n\n#include <icbs/datastream.hpp>\n";
+                  ss << "#include <icbs/name.hpp>\n";
                }
                ss << "extern \"C\" {\n";
                ss << "uint32_t action_data_size();\n";
@@ -250,7 +250,7 @@ namespace eosio { namespace cdt {
                ss << "buff = as >= " << max_stack_size << " ? malloc(as) : alloca(as);\n";
                ss << "::read_action_data(buff, as);\n";
                ss << "}\n";
-               ss << "eosio::datastream<const char*> ds{(char*)buff, as};\n";
+               ss << "icbs::datastream<const char*> ds{(char*)buff, as};\n";
                int i=0;
                for (auto param : decl->parameters()) {
                   clang::LangOptions lang_opts;
@@ -265,7 +265,7 @@ namespace eosio { namespace cdt {
                   ss << tn << " arg" << i << "; ds >> arg" << i << ";\n";
                   i++;
                }
-               ss << decl->getParent()->getQualifiedNameAsString() << "{eosio::name{r},eosio::name{c},ds}." << decl->getNameAsString() << "(";
+               ss << decl->getParent()->getQualifiedNameAsString() << "{icbs::name{r},icbs::name{c},ds}." << decl->getNameAsString() << "(";
                for (int i=0; i < decl->parameters().size(); i++) {
                   ss << "arg" << i;
                   if (i < decl->parameters().size()-1)
@@ -417,13 +417,13 @@ namespace eosio { namespace cdt {
                   // generate apply stub with abi
                   std::stringstream ss;
                   ss << "extern \"C\" {\n";
-                  ss << "void eosio_assert_code(uint32_t, uint64_t);";
+                  ss << "void icbs_assert_code(uint32_t, uint64_t);";
                   ss << "\t__attribute__((weak, eosio_wasm_entry, eosio_wasm_abi(";
                   std::string abi = cg.abi;
                   ss << "\"" << _quoted(abi) << "\"";
                   ss << ")))\n";
                   ss << "\tvoid __insert_eosio_abi(unsigned long long r, unsigned long long c, unsigned long long a){";
-                  ss << "eosio_assert_code(false, 1);";
+                  ss << "icbs_assert_code(false, 1);";
                   ss << "}\n";
                   ss << "}";
                   visitor->get_rewriter().InsertTextAfter(ci->getSourceManager().getLocForEndOfFile(fid), ss.str());

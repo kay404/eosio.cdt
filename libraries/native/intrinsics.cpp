@@ -1,20 +1,20 @@
-#include <eosio/action.h>
-#include <eosio/chain.h>
-#include <eosio/crypto.h>
-#include <eosio/db.h>
-#include <eosio/permission.h>
-#include <eosio/print.h>
-#include <eosio/privileged.h>
-#include <eosio/system.h>
-#include <eosio/transaction.h>
-#include <eosio/types.h>
-#include "native/eosio/intrinsics.hpp"
-#include "native/eosio/crt.hpp"
+#include <icbs/action.h>
+#include <icbs/chain.h>
+#include <icbs/crypto.h>
+#include <icbs/db.h>
+#include <icbs/permission.h>
+#include <icbs/print.h>
+#include <icbs/privileged.h>
+#include <icbs/system.h>
+#include <icbs/transaction.h>
+#include <icbs/types.h>
+#include "native/icbs/intrinsics.hpp"
+#include "native/icbs/crt.hpp"
 #include <softfloat.hpp>
 #include <float.h>
 
 // Boilerplate
-using namespace eosio::native;
+using namespace icbs::native;
 extern "C" {
    void get_resource_limits( capi_name account, int64_t* ram_bytes, int64_t* net_weight, int64_t* cpu_weight ) {
       return intrinsics::get().call<intrinsics::get_resource_limits>(account, ram_bytes, net_weight, cpu_weight);
@@ -694,67 +694,67 @@ extern "C" {
    int32_t _eosio_f32_trunc_i32s( float af ) {
       float32_t a = to_softfloat32(af);
       if (_eosio_f32_ge(af, 2147483648.0f) || _eosio_f32_lt(af, -2147483648.0f))
-         eosio_assert(false,  "Error, f32.convert_s/i32 overflow" );
+         icbs_assert(false,  "Error, f32.convert_s/i32 overflow" );
 
       if (f32_is_nan(a))
-         eosio_assert(false,  "Error, f32.convert_s/i32 unrepresentable");
+         icbs_assert(false,  "Error, f32.convert_s/i32 unrepresentable");
       return f32_to_i32( to_softfloat32(_eosio_f32_trunc( af )), 0, false );
    }
    int32_t _eosio_f64_trunc_i32s( double af ) {
       float64_t a = to_softfloat64(af);
       if (_eosio_f64_ge(af, 2147483648.0) || _eosio_f64_lt(af, -2147483648.0))
-         eosio_assert(false,  "Error, f64.convert_s/i32 overflow");
+         icbs_assert(false,  "Error, f64.convert_s/i32 overflow");
       if (f64_is_nan(a))
-         eosio_assert(false,  "Error, f64.convert_s/i32 unrepresentable");
+         icbs_assert(false,  "Error, f64.convert_s/i32 unrepresentable");
       return f64_to_i32( to_softfloat64(_eosio_f64_trunc( af )), 0, false );
    }
    uint32_t _eosio_f32_trunc_i32u( float af ) {
       float32_t a = to_softfloat32(af);
       if (_eosio_f32_ge(af, 4294967296.0f) || _eosio_f32_le(af, -1.0f))
-         eosio_assert(false,  "Error, f32.convert_u/i32 overflow");
+         icbs_assert(false,  "Error, f32.convert_u/i32 overflow");
       if (f32_is_nan(a))
-         eosio_assert(false,  "Error, f32.convert_u/i32 unrepresentable");
+         icbs_assert(false,  "Error, f32.convert_u/i32 unrepresentable");
       return f32_to_ui32( to_softfloat32(_eosio_f32_trunc( af )), 0, false );
    }
    uint32_t _eosio_f64_trunc_i32u( double af ) {
       float64_t a = to_softfloat64(af);
       if (_eosio_f64_ge(af, 4294967296.0) || _eosio_f64_le(af, -1.0))
-         eosio_assert(false,  "Error, f64.convert_u/i32 overflow");
+         icbs_assert(false,  "Error, f64.convert_u/i32 overflow");
       if (f64_is_nan(a))
-         eosio_assert(false,  "Error, f64.convert_u/i32 unrepresentable");
+         icbs_assert(false,  "Error, f64.convert_u/i32 unrepresentable");
       return f64_to_ui32( to_softfloat64(_eosio_f64_trunc( af )), 0, false );
    }
    int64_t _eosio_f32_trunc_i64s( float af ) {
       float32_t a = to_softfloat32(af);
       if (_eosio_f32_ge(af, 9223372036854775808.0f) || _eosio_f32_lt(af, -9223372036854775808.0f))
-         eosio_assert(false,  "Error, f32.convert_s/i64 overflow");
+         icbs_assert(false,  "Error, f32.convert_s/i64 overflow");
       if (f32_is_nan(a))
-         eosio_assert(false,  "Error, f32.convert_s/i64 unrepresentable");
+         icbs_assert(false,  "Error, f32.convert_s/i64 unrepresentable");
       return f32_to_i64( to_softfloat32(_eosio_f32_trunc( af )), 0, false );
    }
    int64_t _eosio_f64_trunc_i64s( double af ) {
       float64_t a = to_softfloat64(af);
       if (_eosio_f64_ge(af, 9223372036854775808.0) || _eosio_f64_lt(af, -9223372036854775808.0))
-         eosio_assert(false,  "Error, f64.convert_s/i64 overflow");
+         icbs_assert(false,  "Error, f64.convert_s/i64 overflow");
       if (f64_is_nan(a))
-         eosio_assert(false,  "Error, f64.convert_s/i64 unrepresentable");
+         icbs_assert(false,  "Error, f64.convert_s/i64 unrepresentable");
 
       return f64_to_i64( to_softfloat64(_eosio_f64_trunc( af )), 0, false );
    }
    uint64_t _eosio_f32_trunc_i64u( float af ) {
       float32_t a = to_softfloat32(af);
       if (_eosio_f32_ge(af, 18446744073709551616.0f) || _eosio_f32_le(af, -1.0f))
-         eosio_assert(false,  "Error, f32.convert_u/i64 overflow");
+         icbs_assert(false,  "Error, f32.convert_u/i64 overflow");
       if (f32_is_nan(a))
-         eosio_assert(false,  "Error, f32.convert_u/i64 unrepresentable");
+         icbs_assert(false,  "Error, f32.convert_u/i64 unrepresentable");
       return f32_to_ui64( to_softfloat32(_eosio_f32_trunc( af )), 0, false );
    }
    uint64_t _eosio_f64_trunc_i64u( double af ) {
       float64_t a = to_softfloat64(af);
       if (_eosio_f64_ge(af, 18446744073709551616.0) || _eosio_f64_le(af, -1.0))
-         eosio_assert(false,  "Error, f64.convert_u/i64 overflow");
+         icbs_assert(false,  "Error, f64.convert_u/i64 overflow");
       if (f64_is_nan(a))
-         eosio_assert(false,  "Error, f64.convert_u/i64 unrepresentable");
+         icbs_assert(false,  "Error, f64.convert_u/i64 unrepresentable");
       return f64_to_ui64( to_softfloat64(_eosio_f64_trunc( af )), 0, false );
    }
    float _eosio_i32_to_f32( int32_t a )  {
@@ -854,28 +854,28 @@ extern "C" {
       return (void*)dest;
    }
 
-   void eosio_assert(uint32_t test, const char* msg) {
+   void icbs_assert(uint32_t test, const char* msg) {
       if (test == 0) {
-         _prints(msg, eosio::cdt::output_stream_kind::std_err);
-         _prints_l("\n", 1, eosio::cdt::output_stream_kind::none);
+         _prints(msg, icbs::cdt::output_stream_kind::std_err);
+         _prints_l("\n", 1, icbs::cdt::output_stream_kind::none);
          longjmp(*___env_ptr, 1);
       }
    }
 
-   void eosio_assert_message(uint32_t test, const char* msg, uint32_t len) {
+   void icbs_assert_message(uint32_t test, const char* msg, uint32_t len) {
       if (test == 0) {
-         _prints_l(msg, len, eosio::cdt::output_stream_kind::std_err);
-         _prints_l("\n", 1, eosio::cdt::output_stream_kind::none);
+         _prints_l(msg, len, icbs::cdt::output_stream_kind::std_err);
+         _prints_l("\n", 1, icbs::cdt::output_stream_kind::none);
          longjmp(*___env_ptr, 1);
       }
    }
 
-   void eosio_assert_code(uint32_t test, uint64_t code) {
+   void icbs_assert_code(uint32_t test, uint64_t code) {
       if (test == 0) {
          char buff[32];
          snprintf(buff, 32, "%llu", code);
-         _prints(buff, eosio::cdt::output_stream_kind::std_err);
-         _prints_l("\n", 1, eosio::cdt::output_stream_kind::none);
+         _prints(buff, icbs::cdt::output_stream_kind::std_err);
+         _prints_l("\n", 1, icbs::cdt::output_stream_kind::none);
          longjmp(*___env_ptr, 1);
       }
    }
@@ -883,7 +883,7 @@ extern "C" {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Winvalid-noreturn"
    void abort() {
-      eosio_assert(false, "abort");
+      icbs_assert(false, "abort");
    }
 #pragma clang diagnostic pop
 }
