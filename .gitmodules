@@ -12,3 +12,4 @@
 [submodule "eosio_llvm"]
 	path = eosio_llvm
 	url = https://github.com/kay404/llvm.git
+	branch = cdk
