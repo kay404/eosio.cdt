@@ -58,7 +58,7 @@ set(CDT_ROOT_DIR ${CDT_INSTALL_PREFIX})
 configure_file(${CMAKE_SOURCE_DIR}/modules/eosio.cdt-config.cmake ${CMAKE_BINARY_DIR}/modules/icbs.cdt-config.cmake @ONLY)
 configure_file(${CMAKE_SOURCE_DIR}/modules/EosioCDTMacros.cmake.in ${CMAKE_BINARY_DIR}/modules/IcbsCDKMacros.cmake @ONLY)
 configure_file(${CMAKE_SOURCE_DIR}/modules/EosioWasmToolchain.cmake.in ${CMAKE_BINARY_DIR}/modules/IcbsWasmToolchain.cmake @ONLY)
-install(FILES ${CMAKE_BINARY_DIR}/modules/EosioCDTMacros.cmake DESTINATION ${CDT_INSTALL_PREFIX}/lib/cmake/icbs.cdk)
+install(FILES ${CMAKE_BINARY_DIR}/modules/IcbsCDKMacros.cmake DESTINATION ${CDT_INSTALL_PREFIX}/lib/cmake/icbs.cdk)
 
 set(CDT_ROOT_DIR "_PREFIX_")
 configure_file(${CMAKE_SOURCE_DIR}/modules/EosioCDTMacros.cmake.in ${CMAKE_BINARY_DIR}/modules/IcbsCDKMacrosPackage.cmake @ONLY)
