@@ -2,13 +2,13 @@ if(EOSIO_CDT_ROOT STREQUAL "" OR NOT EOSIO_CDT_ROOT)
    set(EOSIO_CDT_ROOT "@CDT_ROOT_DIR@")
 endif()
 
-list(APPEND CMAKE_MODULE_PATH ${EOSIO_CDT_ROOT}/lib/cmake/eosio.cdt)
+list(APPEND CMAKE_MODULE_PATH ${EOSIO_CDT_ROOT}/lib/cmake/icbs.cdk)
 if (NOT EOSIO_WASM_OLD_BEHAVIOR STREQUAL "Off")
     set(EOSIO_WASM_OLD_BEHAVIOR "On")
-    include(EosioWasmToolchain)
+    include(IcbsWasmToolchain)
 endif()
 
-include(EosioCDTMacros)
+include(IcbsCDKMacros)
   
 
 function(EXTRACT_MAJOR_MINOR_FROM_VERSION version success major minor)

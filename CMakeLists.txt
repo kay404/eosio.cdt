@@ -11,7 +11,7 @@ This process created the file `CMakeCache.txt' and the directory `CMakeFiles'.
 Please delete them.")
 endif()
 
-project(eosio_cdt)
+project(icbs_cdk)
 
 find_program(SCCACHE_FOUND sccache)
 if (SCCACHE_FOUND)
@@ -37,7 +37,7 @@ else()
    set(VERSION_FULL "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 endif()
 
-set(CDT_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}/eosio.cdt)
+set(CDT_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}/icbs.cdk)
 
 include(GNUInstallDirs)
 
@@ -49,35 +49,35 @@ set(WASM_SDK_BUILD true)
 ### Configure the EosioWasmToolchain.cmakes
 set(CDT_ROOT_DIR ${CMAKE_BINARY_DIR})
 
-configure_file(${CMAKE_SOURCE_DIR}/modules/eosio.cdt-config.cmake ${CMAKE_BINARY_DIR}/lib/cmake/eosio.cdt/eosio.cdt-config.cmake @ONLY)
-configure_file(${CMAKE_SOURCE_DIR}/modules/EosioCDTMacros.cmake.in ${CMAKE_BINARY_DIR}/lib/cmake/eosio.cdt/EosioCDTMacros.cmake @ONLY)
-configure_file(${CMAKE_SOURCE_DIR}/modules/EosioWasmToolchain.cmake.in ${CMAKE_BINARY_DIR}/lib/cmake/eosio.cdt/EosioWasmToolchain.cmake @ONLY)
+configure_file(${CMAKE_SOURCE_DIR}/modules/eosio.cdt-config.cmake ${CMAKE_BINARY_DIR}/lib/cmake/icbs.cdk/icbs.cdk-config.cmake @ONLY)
+configure_file(${CMAKE_SOURCE_DIR}/modules/EosioCDTMacros.cmake.in ${CMAKE_BINARY_DIR}/lib/cmake/icbs.cdk/IcbsCDKMacros.cmake @ONLY)
+configure_file(${CMAKE_SOURCE_DIR}/modules/EosioWasmToolchain.cmake.in ${CMAKE_BINARY_DIR}/lib/cmake/icbs.cdk/IcbsWasmToolchain.cmake @ONLY)
 
 set(CDT_ROOT_DIR ${CDT_INSTALL_PREFIX})
 
-configure_file(${CMAKE_SOURCE_DIR}/modules/eosio.cdt-config.cmake ${CMAKE_BINARY_DIR}/modules/eosio.cdt-config.cmake @ONLY)
-configure_file(${CMAKE_SOURCE_DIR}/modules/EosioCDTMacros.cmake.in ${CMAKE_BINARY_DIR}/modules/EosioCDTMacros.cmake @ONLY)
-configure_file(${CMAKE_SOURCE_DIR}/modules/EosioWasmToolchain.cmake.in ${CMAKE_BINARY_DIR}/modules/EosioWasmToolchain.cmake @ONLY)
-install(FILES ${CMAKE_BINARY_DIR}/modules/EosioCDTMacros.cmake DESTINATION ${CDT_INSTALL_PREFIX}/lib/cmake/eosio.cdt)
+configure_file(${CMAKE_SOURCE_DIR}/modules/eosio.cdt-config.cmake ${CMAKE_BINARY_DIR}/modules/icbs.cdt-config.cmake @ONLY)
+configure_file(${CMAKE_SOURCE_DIR}/modules/EosioCDTMacros.cmake.in ${CMAKE_BINARY_DIR}/modules/IcbsCDKMacros.cmake @ONLY)
+configure_file(${CMAKE_SOURCE_DIR}/modules/EosioWasmToolchain.cmake.in ${CMAKE_BINARY_DIR}/modules/IcbsWasmToolchain.cmake @ONLY)
+install(FILES ${CMAKE_BINARY_DIR}/modules/EosioCDTMacros.cmake DESTINATION ${CDT_INSTALL_PREFIX}/lib/cmake/icbs.cdk)
 
 set(CDT_ROOT_DIR "_PREFIX_")
-configure_file(${CMAKE_SOURCE_DIR}/modules/EosioCDTMacros.cmake.in ${CMAKE_BINARY_DIR}/modules/EosioCDTMacrosPackage.cmake @ONLY)
-configure_file(${CMAKE_SOURCE_DIR}/modules/EosioWasmToolchain.cmake.in ${CMAKE_BINARY_DIR}/modules/EosioWasmToolchainPackage.cmake @ONLY)
-configure_file(${CMAKE_SOURCE_DIR}/modules/eosio.cdt-config.cmake ${CMAKE_BINARY_DIR}/modules/eosio.cdt-config.cmake.package @ONLY)
+configure_file(${CMAKE_SOURCE_DIR}/modules/EosioCDTMacros.cmake.in ${CMAKE_BINARY_DIR}/modules/IcbsCDKMacrosPackage.cmake @ONLY)
+configure_file(${CMAKE_SOURCE_DIR}/modules/EosioWasmToolchain.cmake.in ${CMAKE_BINARY_DIR}/modules/IcbsWasmToolchainPackage.cmake @ONLY)
+configure_file(${CMAKE_SOURCE_DIR}/modules/eosio.cdt-config.cmake ${CMAKE_BINARY_DIR}/modules/icbs.cdk-config.cmake.package @ONLY)
 
 include(modules/LibrariesExternalProject.txt)
 
 include(modules/InstallCDT.cmake)
 
-configure_file(${CMAKE_SOURCE_DIR}/imports/eosio.imports.in ${CMAKE_BINARY_DIR}/eosio.imports COPYONLY)
-install(FILES ${CMAKE_BINARY_DIR}/eosio.imports DESTINATION ${CDT_INSTALL_PREFIX})
+configure_file(${CMAKE_SOURCE_DIR}/imports/eosio.imports.in ${CMAKE_BINARY_DIR}/icbs.imports COPYONLY)
+install(FILES ${CMAKE_BINARY_DIR}/icbs.imports DESTINATION ${CDT_INSTALL_PREFIX})
 
 configure_file(${CMAKE_SOURCE_DIR}/scripts/ricardeos/ricardeos.py ${CMAKE_BINARY_DIR}/scripts/ricardeos.py COPYONLY)
 install(FILES ${CMAKE_BINARY_DIR}/scripts/ricardeos.py DESTINATION ${CDT_INSTALL_PREFIX}/scripts)
 
 # section for package construction
 set(VENDOR "block.one")
-set(PROJECT_NAME "eosio.cdt")
+set(PROJECT_NAME "icbs.cdk")
 set(DESC "Toolchain and supporting tools for the EOS.IO platform")
 set(URL "https://github.com/eosio/eosio.cdt")
 set(EMAIL "support@block.one")
@@ -92,7 +92,7 @@ configure_file(${CMAKE_SOURCE_DIR}/eosio_llvm/LICENSE.TXT ${CMAKE_BINARY_DIR}/li
 configure_file(${CMAKE_SOURCE_DIR}/libraries/boost/boost.license ${CMAKE_BINARY_DIR}/licenses/boost.license COPYONLY)
 configure_file(${CMAKE_SOURCE_DIR}/tools/external/wabt/LICENSE ${CMAKE_BINARY_DIR}/licenses/wabt.license COPYONLY)
 configure_file(${CMAKE_SOURCE_DIR}/tools/jsoncons/LICENSE ${CMAKE_BINARY_DIR}/licenses/jsoncons.license COPYONLY)
-configure_file(${CMAKE_SOURCE_DIR}/LICENSE ${CMAKE_BINARY_DIR}/licenses/eosio.cdt.license COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/LICENSE ${CMAKE_BINARY_DIR}/licenses/icbs.cdk.license COPYONLY)
 
 # include(modules/TestsExternalProject.txt)
 

@@ -38,8 +38,8 @@ endmacro( eosio_tool_install_and_symlink )
 
 macro( eosio_cmake_install_and_symlink file symlink )
    set(BINARY_DIR ${CMAKE_BINARY_DIR}/modules)
-   install(CODE "execute_process( COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_INSTALL_PREFIX}/lib/cmake/eosio.cdt)")
-   install(CODE "execute_process( COMMAND ${CMAKE_COMMAND} -E create_symlink ${CDT_INSTALL_PREFIX}/lib/cmake/eosio.cdt/${file} ${CMAKE_INSTALL_PREFIX}/lib/cmake/eosio.cdt/${symlink})")
+   install(CODE "execute_process( COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_INSTALL_PREFIX}/lib/cmake/icbs.cdk)")
+   install(CODE "execute_process( COMMAND ${CMAKE_COMMAND} -E create_symlink ${CDT_INSTALL_PREFIX}/lib/cmake/icbs.cdk/${file} ${CMAKE_INSTALL_PREFIX}/lib/cmake/icbs.cdk/${symlink})")
 endmacro( eosio_cmake_install_and_symlink )
 
 macro( eosio_libraries_install)
@@ -80,8 +80,8 @@ eosio_clang_install(../lib/LLVMEosioApply${CMAKE_SHARED_LIBRARY_SUFFIX})
 eosio_clang_install(../lib/LLVMEosioSoftfloat${CMAKE_SHARED_LIBRARY_SUFFIX})
 eosio_clang_install(../lib/eosio_plugin${CMAKE_SHARED_LIBRARY_SUFFIX})
 
-eosio_cmake_install_and_symlink(eosio.cdt-config.cmake eosio.cdt-config.cmake)
-eosio_cmake_install_and_symlink(EosioWasmToolchain.cmake EosioWasmToolchain.cmake)
-eosio_cmake_install_and_symlink(EosioCDTMacros.cmake EosioCDTMacros.cmake)
+eosio_cmake_install_and_symlink(icbs.cdk-config.cmake icbs.cdk-config.cmake)
+eosio_cmake_install_and_symlink(IcbsWasmToolchain.cmake IcbsWasmToolchain.cmake)
+eosio_cmake_install_and_symlink(IcbsCDKMacros.cmake IcbsCDKMacros.cmake)
 
 eosio_libraries_install()
