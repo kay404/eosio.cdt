@@ -3,20 +3,20 @@
 VERS=`sw_vers -productVersion | awk '/10\.13\..*/{print $0}'`
 if [[ -z "$VERS" ]];
 then
-   VERS=`sw_vers -productVersion | awk '/10\.14.*/{print $0}'`
+   VERS=`sw_vers -productVersion | awk '/11\.0.*/{print $0}'`
    if [[ -z "$VERS" ]];
    then
       echo "Error, unsupported OS X version"
       exit -1
    fi
-   MAC_VERSION="mojave"
+   MAC_VERSION="big_sur"
 else
    MAC_VERSION="high_sierra"
 fi
 
 NAME="${PROJECT}-${VERSION}.${MAC_VERSION}.bottle"
 
-mkdir -p ${PROJECT}/${VERSION}/opt/eosio_cdt/lib/cmake
+mkdir -p ${PROJECT}/${VERSION}/opt/icbs_cdk/lib/cmake
 
 PREFIX="${PROJECT}/${VERSION}"
 SPREFIX="\/usr\/local"
@@ -32,11 +32,11 @@ export SSUBPREFIX
 
 hash=`openssl dgst -sha256 ${NAME}.tar.gz | awk 'NF>1{print $NF}'`
 
-echo "class EosioCdt < Formula
+echo "class IcbsCdk < Formula
 
    homepage \"${URL}\"
    revision 0
-   url \"https://github.com/eosio/eosio.cdt/archive/v${VERSION}.tar.gz\"
+   url \"https://github.com/kay404/eosio.cdt/archive/v${VERSION}.tar.gz\"
    version \"${VERSION}\"
    
    option :universal
@@ -55,7 +55,7 @@ echo "class EosioCdt < Formula
    depends_on :arch =>  :intel
   
    bottle do
-      root_url \"https://github.com/eosio/eosio.cdt/releases/download/v${VERSION}\"
+      root_url \"https://github.com/kay404/eosio.cdt/releases/download/v${VERSION}\"
       sha256 \"${hash}\" => :${MAC_VERSION}
    end
    def install

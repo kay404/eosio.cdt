@@ -3,26 +3,26 @@
 OPT_LOCATION=$HOME/opt
 
 binaries=(
-   eosio-ranlib
-   eosio-ar
-   eosio-objdump
-   eosio-readelf
-   eosio-abigen
-   eosio-wasm2wast
-   eosio-wast2wasm
-   eosio-pp
-   eosio-cc
-   eosio-cpp
-   eosio-ld
-   eosio-abidiff
-   eosio-init
+   icbs-ranlib
+   icbs-ar
+   icbs-objdump
+   icbs-readelf
+   icbs-abigen
+   icbs-wasm2wast
+   icbs-wast2wasm
+   icbs-pp
+   icbs-cc
+   icbs-cpp
+   icbs-ld
+   icbs-abidiff
+   icbs-init
    llvm-readelf
    llvm-objdump
    llvm-ar
    llvm-ranlib
 )
 
-if [ -d "/usr/local/eosio.cdt" ]; then
+if [ -d "/usr/local/icbs.cdk" ]; then
    printf "Do you wish to remove this install? (requires sudo)\n"
    select yn in "Yes" "No"; do
       case $yn in
@@ -32,14 +32,14 @@ if [ -d "/usr/local/eosio.cdt" ]; then
                exit -1
             fi
             pushd /usr/local &> /dev/null
-            rm -rf eosio.cdt
+            rm -rf icbs.cdk
             pushd bin &> /dev/null
             for binary in ${binaries[@]}; do
                rm ${binary}
             done
             popd &> /dev/null
             pushd lib/cmake &> /dev/null
-            rm -rf eosio.cdt
+            rm -rf icbs.cdk
             popd &> /dev/null
             break;;
          [Nn]* ) 
@@ -49,7 +49,7 @@ if [ -d "/usr/local/eosio.cdt" ]; then
    done
 fi
 
-if [ -d "/usr/local/eosio.wasmsdk" ]; then
+if [ -d "/usr/local/icbs.wasmsdk" ]; then
    printf "Do you wish to remove this install? (requires sudo)\n"
    select yn in "Yes" "No"; do
       case $yn in
@@ -59,7 +59,7 @@ if [ -d "/usr/local/eosio.wasmsdk" ]; then
                exit -1
             fi
             pushd /usr/local &> /dev/null
-            rm -rf eosio.wasmsdk
+            rm -rf icbs.wasmsdk
             pushd bin &> /dev/null
             for binary in ${binaries[@]}; do
                rm ${binary}
@@ -74,14 +74,14 @@ if [ -d "/usr/local/eosio.wasmsdk" ]; then
    done
 fi
 
-if [ -d $OPT_LOCATION/eosio.cdt ] || [[ $1 == "force-new" ]]; then
+if [ -d $OPT_LOCATION/icbs.cdk ] || [[ $1 == "force-new" ]]; then
    printf "Do you wish to remove this install?\n"
    select yn in "Yes" "No"; do
       case $yn in
          [Yy]* )
             pushd $HOME &> /dev/null
             pushd opt &> /dev/null
-            rm -rf eosio.cdt
+            rm -rf icbs.cdk
             popd &> /dev/null
             pushd bin &> /dev/null
             for binary in ${binaries[@]}; do
@@ -89,7 +89,7 @@ if [ -d $OPT_LOCATION/eosio.cdt ] || [[ $1 == "force-new" ]]; then
             done
             popd &> /dev/null
             pushd lib/cmake &> /dev/null
-            rm -rf eosio.cdt
+            rm -rf icbs.cdk
             popd &> /dev/null
             break;;
          [Nn]* )

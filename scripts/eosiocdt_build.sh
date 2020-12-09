@@ -155,7 +155,7 @@ cd $BUILD_DIR
 printf "\\n========================================================================\\n"
 printf "======================= Starting EOSIO.CDT Build =======================\\n"
 
-$CMAKE -DCMAKE_INSTALL_PREFIX=$OPT_LOCATION/eosio.cdt "${REPO_ROOT}"
+$CMAKE -DCMAKE_INSTALL_PREFIX=$OPT_LOCATION/icbs.cdk "${REPO_ROOT}"
 if [ $? -ne 0 ]; then exit -1; fi
 make -j$CORES
 if [ $? -ne 0 ]; then exit -1; fi

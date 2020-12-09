@@ -75,7 +75,7 @@ printf "    \\  \\::/       \\  \\::/        /__/:/        \\__\\/      \\  \\::
 printf "     \\__\\/         \\__\\/         \\__\\/                     \\__\\/ \n\n${txtrst}"
 
 printf "==============================================================================================\\n"
-printf "EOSIO has been installed into ${OPT_LOCATION}/eosio.cdt/bin!\\n"
+printf "EOSIO has been installed into ${OPT_LOCATION}/icbs.cdk/bin!\\n"
 printf "If you need to, you can fully uninstall using eosiocdt_uninstall.sh.\\n"
 printf "==============================================================================================\\n\\n"
 
