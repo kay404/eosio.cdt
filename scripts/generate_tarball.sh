@@ -38,7 +38,7 @@ cp ${BUILD_DIR}/lib/*.a ${CDT_PREFIX}/lib || exit 1
 pushd ${PREFIX}/lib/cmake/${PROJECT} &> /dev/null
 ln -sf ../../../${SUBPREFIX}/lib/cmake/${PROJECT}/${PROJECT}-config.cmake ${PROJECT}-config.cmake || exit 1
 ln -sf ../../../${SUBPREFIX}/lib/cmake/${PROJECT}/IcbsWasmToolchain.cmake IcbsWasmToolchain.cmake || exit 1
-ln -sf ../../../${SUBPREFIX}/lib/cmake/${PROJECT}/IcbsCDTMacros.cmake IcbsCDTMacros.cmake || exit 1
+ln -sf ../../../${SUBPREFIX}/lib/cmake/${PROJECT}/IcbsCDKMacros.cmake IcbsCDKMacros.cmake || exit 1
 popd &> /dev/null
 
 create_symlink() {
